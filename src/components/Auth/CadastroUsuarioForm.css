@@ -1,0 +1,61 @@
+/* Reaproveita a mesma base visual do Login, mas pode customizar à parte */
+.auth-card {
+  max-width: 360px;
+  margin: 4rem auto;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.auth-title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+}
+
+.auth-form {
+  display: grid;
+  gap: 12px;
+}
+
+.auth-label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.auth-input {
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+}
+
+.auth-input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.auth-button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.auth-button:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.auth-footer {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
