@@ -60,12 +60,19 @@ const excluir = (id) => {
           onChange={(e) => setForm({ ...form, nome: e.target.value })}
         />
         <input
-          type="number"
-          className="input"
-          placeholder="Número do canal"
-          value={form.numero}
-          onChange={(e) => setForm({ ...form, numero: e.target.value })}
-        />
+  type="number"
+  className="input"
+  placeholder="Número do canal"
+  value={form.numero}
+  min="0" // evita números negativos no input
+  onChange={(e) => {
+    const value = e.target.value;
+    if (value >= 0) {
+      setForm({ ...form, numero: value });
+    }
+  }}
+/>
+
         <input
           type="text"
           className="input"
