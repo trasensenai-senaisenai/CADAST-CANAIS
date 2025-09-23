@@ -54,3 +54,36 @@
 .table { width: 100%; border-collapse: collapse; margin-top: 16px; }
 .th, .td { border-bottom: 1px solid #e5e7eb; padding: 12px; text-align: left; font-size: .95rem; }
 .row-actions { display: flex; gap: 8px; }
+
+/* Botão de Cadastrar */
+.btn-cadastrar {
+  background: #2563eb;   /* Azul */
+  border-color: #2563eb;
+  color: #fff;
+}
+.btn-cadastrar:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Botão de Editar */
+.btn-editar {
+  background: #16a34a;   /* Verde */
+  border-color: #16a34a;
+  color: #fff;
+}
+.btn-editar:hover {
+  background: #15803d;
+  border-color: #15803d;
+}
+
+/* Botão de Excluir */
+.btn-excluir {
+  background: #dc2626;   /* Vermelho */
+  border-color: #dc2626;
+  color: #fff;
+}
+.btn-excluir:hover {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}

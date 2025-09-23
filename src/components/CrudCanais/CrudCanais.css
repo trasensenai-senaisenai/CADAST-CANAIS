@@ -1,56 +1,94 @@
-/* Wrapper */
-.crud { max-width: 1000px; }
-.crud__title { margin: 0 0 6px 0; }
-.crud__subtitle { margin: 0 0 16px 0; color: #6b7280; }
+.container {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
 
-/* Form */
-.crud__form { margin-bottom: 8px; }
-.form-row {
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.form-row.one-col { grid-template-columns: 1fr; }
 
-.form-field { display: flex; flex-direction: column; }
-.label { font-size: .9rem; color: #374151; margin-bottom: 4px; }
-
-.input,
-.select {
-  width: 100%;
+input, select {
   padding: 10px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   outline: none;
-}
-.input:focus, .select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+  font-size: 14px;
 }
 
-.actions { display: flex; gap: 8px; margin-top: 6px; }
+input:focus, select:focus {
+  border-color: #007bff;
+}
 
-/* Buttons */
-.btn {
-  padding: 10px 14px;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  color: #374151;
-  font-weight: 600;
+button {
   cursor: pointer;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.2s;
 }
-.btn-primary {
-  border-color: #2563eb;
-  background: #2563eb;
-  color: #fff;
-}
-.btn-ghost { background: #fff; }
-.btn-small { padding: 6px 10px; }
 
-/* Table */
-.table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-.th, .td { border-bottom: 1px solid #e5e7eb; padding: 12px; text-align: left; font-size: .95rem; }
-.row-actions { display: flex; gap: 8px; }
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.item span {
+  font-size: 15px;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit {
+  background: #ffc107;
+  color: #333;
+}
+
+.btn-edit:hover {
+  background: #e0a800;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #a71d2a;
+}

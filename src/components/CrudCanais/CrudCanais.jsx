@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./CrudCanais.css"; // importa o CSS
 
 const API_CANAIS = "http://localhost:4000/api/canais";
 const API_CATEGORIAS = "http://localhost:4000/api/categorias";
@@ -44,46 +45,78 @@ export default function CrudCanais() {
   };
 
   return (
-    <div>
-      <h2>CRUD Canais</h2>
-      <input
-        type="text"
-        placeholder="Nome do canal"
-        value={form.nome}
-        onChange={(e) => setForm({ ...form, nome: e.target.value })}
-      />
-      <input
-        type="number"
-        placeholder="Número do canal"
-        value={form.numero}
-        onChange={(e) => setForm({ ...form, numero: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Descrição"
-        value={form.descricao}
-        onChange={(e) => setForm({ ...form, descricao: e.target.value })}
-      />
-      <select
-        value={form.categoria_id}
-        onChange={(e) => setForm({ ...form, categoria_id: e.target.value })}
-      >
-        <option value="">Selecione uma categoria</option>
-        {categorias.map((cat) => (
-          <option key={cat.id} value={cat.id}>{cat.nome}</option>
-        ))}
-      </select>
-      <button onClick={salvar}>{form.id ? "Atualizar" : "Cadastrar"}</button>
+    <div className="crud">
+      <h2 className="crud__title">CRUD Canais</h2>
 
-      <ul>
-        {lista.map((c) => (
-          <li key={c.id}>
-            Canal {c.numero} - {c.nome} ({c.categoria_nome})
-            <button onClick={() => editar(c)}>Editar</button>
-            <button onClick={() => excluir(c.id)}>Excluir</button>
-          </li>
-        ))}
-      </ul>
+      <div className="crud__form">
+        <input
+          type="text"
+          className="input"
+          placeholder="Nome do canal"
+          value={form.nome}
+          onChange={(e) => setForm({ ...form, nome: e.target.value })}
+        />
+        <input
+          type="number"
+          className="input"
+          placeholder="Número do canal"
+          value={form.numero}
+          onChange={(e) => setForm({ ...form, numero: e.target.value })}
+        />
+        <input
+          type="text"
+          className="input"
+          placeholder="Descrição"
+          value={form.descricao}
+          onChange={(e) => setForm({ ...form, descricao: e.target.value })}
+        />
+        <select
+          className="select select-categoria"
+          value={form.categoria_id}
+          onChange={(e) => setForm({ ...form, categoria_id: e.target.value })}
+        >
+          <option value="">Selecione uma categoria</option>
+          {categorias.map((cat) => (
+            <option key={cat.id} value={cat.id}>{cat.nome}</option>
+          ))}
+        </select>
+
+        <button
+          className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
+          onClick={salvar}
+        >
+          {form.id ? "Atualizar" : "Cadastrar"}
+        </button>
+      </div>
+
+      {/* Tabela de listagem */}
+      <table className="table">
+        <thead>
+          <tr>
+            <th className="th">ID</th>
+            <th className="th">Número</th>
+            <th className="th">Nome</th>
+            <th className="th">Categoria</th>
+            <th className="th">Descrição</th>
+            <th className="th">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {lista.map((c) => (
+            <tr key={c.id}>
+              <td className="td">{c.id}</td>
+              <td className="td">{c.numero}</td>
+              <td className="td">{c.nome}</td>
+              <td className="td">{c.categoria}</td>
+              <td className="td">{c.descricao}</td>
+              <td className="td row-actions">
+                <button className="btn btn-editar btn-small" onClick={() => editar(c)}>Editar</button>
+                <button className="btn btn-excluir btn-small" onClick={() => excluir(c.id)}>Excluir</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

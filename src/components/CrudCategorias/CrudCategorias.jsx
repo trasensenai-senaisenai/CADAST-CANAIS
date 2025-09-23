@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./CrudCategorias.css"; // importa o CSS
 
 const API_CATEGORIAS = "http://localhost:4000/api/categorias";
 
@@ -44,25 +45,55 @@ export default function CrudCategorias() {
   };
 
   return (
-    <div>
-      <h2>CRUD Categorias</h2>
-      <input
-        type="text"
-        value={form.nome}
-        placeholder="Nome da categoria"
-        onChange={(e) => setForm({ ...form, nome: e.target.value })}
-      />
-      <button onClick={salvar}>{form.id ? "Atualizar" : "Cadastrar"}</button>
+    <div className="crud">
+      <h2 className="crud__title">CRUD Categorias</h2>
+      <div className="crud__form">
+        <input
+          type="text"
+          className="input"
+          value={form.nome}
+          placeholder="Nome da categoria"
+          onChange={(e) => setForm({ ...form, nome: e.target.value })}
+        />
+        <button
+          className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
+          onClick={salvar}
+        >
+          {form.id ? "Atualizar" : "Cadastrar"}
+        </button>
+      </div>
 
-      <ul>
-        {lista.map((c) => (
-          <li key={c.id}>
-            {c.nome}
-            <button onClick={() => editar(c)}>Editar</button>
-            <button onClick={() => excluir(c.id)}>Excluir</button>
-          </li>
-        ))}
-      </ul>
+      <table className="table">
+        <thead>
+          <tr>
+            <th className="th">ID</th>
+            <th className="th">Nome</th>
+            <th className="th">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {lista.map((c) => (
+            <tr key={c.id}>
+              <td className="td">{c.id}</td>
+              <td className="td">{c.nome}</td>
+              <td className="td row-actions">
+                <button
+                  className="btn btn-editar btn-small"
+                  onClick={() => editar(c)}
+                >
+                  Editar
+                </button>
+                <button
+                  className="btn btn-excluir btn-small"
+                  onClick={() => excluir(c.id)}
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
