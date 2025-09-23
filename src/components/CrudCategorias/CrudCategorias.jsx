@@ -36,13 +36,15 @@ export default function CrudCategorias() {
   const editar = (categoria) => {
     setForm(categoria);
   };
-
-  // Excluir
-  const excluir = (id) => {
+// Excluir
+const excluir = (id) => {
+  if (window.confirm("Tem certeza que deseja excluir esta categoria?")) {
     fetch(`${API_CATEGORIAS}/${id}`, { method: "DELETE" })
       .then(() => fetch(API_CATEGORIAS).then(res => res.json()))
       .then(data => setLista(data));
-  };
+  }
+};
+
 
   return (
     <div className="crud">

@@ -37,12 +37,15 @@ export default function CrudCanais() {
     setForm(canal);
   };
 
-  // Excluir
-  const excluir = (id) => {
+// Excluir
+const excluir = (id) => {
+  if (window.confirm("Tem certeza que deseja excluir este canal?")) {
     fetch(`${API_CANAIS}/${id}`, { method: "DELETE" })
       .then(() => fetch(API_CANAIS).then(res => res.json()))
       .then(data => setLista(data));
-  };
+  }
+};
+
 
   return (
     <div className="crud">
