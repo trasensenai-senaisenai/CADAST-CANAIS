@@ -6,6 +6,7 @@ const API_CATEGORIAS = "http://localhost:4000/api/categorias";
 export default function CrudCategorias() {
   const [lista, setLista] = useState([]);
   const [form, setForm] = useState({ id: null, nome: "" });
+  const [erros, setErros] = useState({});
 
   // Buscar categorias
   useEffect(() => {
@@ -15,8 +16,24 @@ export default function CrudCategorias() {
       .catch(err => console.error(err));
   }, []);
 
+  // Validação
+  const validar = () => {
+    let novoErro = {};
+
+    if (!form.nome.trim()) {
+      novoErro.nome = "O nome da categoria é obrigatório.";
+    } else if (form.nome.length < 3) {
+      novoErro.nome = "O nome deve ter pelo menos 3 caracteres.";
+    }
+
+    setErros(novoErro);
+    return Object.keys(novoErro).length === 0;
+  };
+
   // Salvar categoria
   const salvar = () => {
+    if (!validar()) return;
+
     const metodo = form.id ? "PUT" : "POST";
     const url = form.id ? `${API_CATEGORIAS}/${form.id}` : API_CATEGORIAS;
 
@@ -27,6 +44,7 @@ export default function CrudCategorias() {
     })
       .then(() => {
         setForm({ id: null, nome: "" });
+        setErros({});
         return fetch(API_CATEGORIAS).then(res => res.json());
       })
       .then(data => setLista(data));
@@ -35,16 +53,17 @@ export default function CrudCategorias() {
   // Editar
   const editar = (categoria) => {
     setForm(categoria);
+    setErros({});
   };
-// Excluir
-const excluir = (id) => {
-  if (window.confirm("Tem certeza que deseja excluir esta categoria?")) {
-    fetch(`${API_CATEGORIAS}/${id}`, { method: "DELETE" })
-      .then(() => fetch(API_CATEGORIAS).then(res => res.json()))
-      .then(data => setLista(data));
-  }
-};
 
+  // Excluir
+  const excluir = (id) => {
+    if (window.confirm("Tem certeza que deseja excluir esta categoria?")) {
+      fetch(`${API_CATEGORIAS}/${id}`, { method: "DELETE" })
+        .then(() => fetch(API_CATEGORIAS).then(res => res.json()))
+        .then(data => setLista(data));
+    }
+  };
 
   return (
     <div className="crud">
@@ -57,6 +76,8 @@ const excluir = (id) => {
           placeholder="Nome da categoria"
           onChange={(e) => setForm({ ...form, nome: e.target.value })}
         />
+        {erros.nome && <span className="erro">{erros.nome}</span>}
+
         <button
           className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
           onClick={salvar}
