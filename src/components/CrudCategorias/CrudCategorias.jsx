@@ -65,6 +65,12 @@ export default function CrudCategorias() {
     }
   };
 
+  // Cancelar edição
+  const cancelar = () => {
+    setForm({ id: null, nome: "" });
+    setErros({});
+  };
+
   return (
     <div className="crud">
       <h2 className="crud__title">Categorias de Canais</h2>
@@ -78,12 +84,20 @@ export default function CrudCategorias() {
         />
         {erros.nome && <span className="erro">{erros.nome}</span>}
 
-        <button
-          className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
-          onClick={salvar}
-        >
-          {form.id ? "Atualizar" : "Cadastrar"}
-        </button>
+        <div className="form-buttons">
+          <button
+            className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
+            onClick={salvar}
+          >
+            {form.id ? "Atualizar" : "Cadastrar"}
+          </button>
+
+          {form.id && (
+            <button className="btn btn-cancelar" onClick={cancelar}>
+              Cancelar
+            </button>
+          )}
+        </div>
       </div>
 
       <table className="table">
