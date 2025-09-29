@@ -18,7 +18,7 @@ html, body, #root {
   --surface: #ffffff;
   --text: #212529;
   --muted: #6c757d;
-  --primary: #0d6efd;            /* azul estilo bootstrap */
+  --primary: #0d6e;            /* azul estilo bootstrap */
   --primary-weak: rgba(13, 110, 253, 0.08);
   --border: #dee2e6;
   --radius: 8px;

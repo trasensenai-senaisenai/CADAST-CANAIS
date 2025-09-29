@@ -32,7 +32,6 @@ export default function CrudCanais() {
       novoErro.numero = "O número deve ser um valor positivo.";
     }
 
-    // Descrição: só valida se o usuário digitou algo
     if (form.descricao.trim() && form.descricao.length < 5) {
       novoErro.descricao = "A descrição deve ter pelo menos 5 caracteres.";
     }
@@ -80,9 +79,15 @@ export default function CrudCanais() {
     }
   };
 
+  // Cancelar edição/cadastro
+  const cancelar = () => {
+    setForm({ id: null, nome: "", numero: "", descricao: "", categoria_id: "" });
+    setErros({});
+  };
+
   return (
     <div className="crud">
-      <h2 className="crud__title">CRUD Canais</h2>
+      <h2 className="crud__title">Canais</h2>
 
       <div className="crud__form">
         <input
@@ -125,12 +130,20 @@ export default function CrudCanais() {
         </select>
         {erros.categoria_id && <span className="erro">{erros.categoria_id}</span>}
 
-        <button
-          className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
-          onClick={salvar}
-        >
-          {form.id ? "Atualizar" : "Cadastrar"}
-        </button>
+        <div className="form-buttons">
+          <button
+            className={`btn ${form.id ? "btn-editar" : "btn-cadastrar"}`}
+            onClick={salvar}
+          >
+            {form.id ? "Atualizar" : "Cadastrar"}
+          </button>
+
+          {form.id && (
+            <button className="btn btn-cancelar" onClick={cancelar}>
+              Cancelar
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Tabela de listagem */}

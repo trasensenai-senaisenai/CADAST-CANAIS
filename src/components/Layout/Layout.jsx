@@ -14,7 +14,7 @@ export default function Layout() {
   return (
     <div className="app">
       <aside className="sidebar">
-        <h1 className="brand">Admin</h1>
+        <h1 className="brand">lukas</h1>
 
         <nav className="nav">
           <NavLink to="/alunos" className={({ isActive }) => `link ${isActive ? "active" : ""}`}>
@@ -49,7 +49,7 @@ export default function Layout() {
         </section>
 
         <footer className="footer">
-          © {new Date().getFullYear()} Sua Empresa
+          © {new Date().getFullYear()} lukas antenas
         </footer>
       </main>
     </div>

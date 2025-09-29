@@ -67,7 +67,7 @@ export default function CrudCategorias() {
 
   return (
     <div className="crud">
-      <h2 className="crud__title">CRUD Categorias</h2>
+      <h2 className="crud__title">Categorias de Canais</h2>
       <div className="crud__form">
         <input
           type="text"
